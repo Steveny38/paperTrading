@@ -100,7 +100,7 @@ async function getStockHistory(symbol: string, timeframe: string){
 
 
 export async function POST(request: Request, { params }: { params: { symbol: string } }){
-    const {symbol} = params
+    const {symbol} = await params
 
     const timeframe = await request.json()
 
