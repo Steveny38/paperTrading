@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 
 
@@ -99,15 +100,13 @@ async function getStockHistory(symbol: string, timeframe: string){
 }
 
 
-export async function POST(request: Request, { params }: { params: { symbol: string } }){
-    const {symbol} = params
-
+export async function POST(request: Request, { params } : { params: Promise<{ symbol: string }> }){
+    const {symbol} = await params
     const timeframe = await request.json()
 
-
-
     const data = await getStockHistory(symbol, timeframe)
-
     return NextResponse.json(data)
+
+
 
 }

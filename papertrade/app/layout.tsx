@@ -22,37 +22,50 @@ export const metadata: Metadata = {
 };
 
 
-export async function getAuth(){
-  const supabase = await createClient()
-  const {data : {user}} = await supabase.auth.getUser()
-  return user
-
-}
 
 
 export default async function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
-
-
-  const user = await getAuth()
+  const supabase = await createClient()
+  const {data : {user}} = await supabase.auth.getUser()
   
+  if(user){
+    return (
 
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+          >
+     
+  
+            <div className="flex min-h-screen font-[family-name:var(--font-geist-sans)] ">
+                <SideBar></SideBar> 
+              <div className="w-screen" >{children}</div> 
+  
+            </div>
+  
+          
+        </body>
+      </html>
+    );
+  } else {
+    return (
 
-  return (
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+          >
+     
+  
+            <div className="flex min-h-screen font-[family-name:var(--font-geist-sans)] ">
+              <div className="w-screen" >{children}</div> 
+  
+            </div>
+  
+          
+        </body>
+      </html>
+    );
+  }
 
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-        >
-   
-
-          <div className="flex min-h-screen">
-         {user?  <SideBar></SideBar> : <></> } 
-            <div className="w-screen" >{children}</div>
-
-          </div>
-
-        
-      </body>
-    </html>
-  );
+  
 }

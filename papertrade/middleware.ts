@@ -12,8 +12,19 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/login', request.url), {
         status: 302,
       })
-    }
-  }
+    } 
+
+
+    
+  } else if(request.nextUrl.pathname.startsWith("/portfolio")){
+    const supabase =  createClient()
+    const {data: {user}} = await (await supabase).auth.getUser()
+
+    if(!user){
+      return NextResponse.redirect(new URL('/login', request.url), {
+        status: 302,
+      })
+    }}
 
   
 

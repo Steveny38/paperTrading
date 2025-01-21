@@ -69,11 +69,18 @@ const PortfolioPage = () => {
                 setPortData(data.portfolio)
                 setTransactionHist(data.transactions)
                 setCurr(data.currentHoldings)
-                setHoldingValues(data.holdingPrices.quotes)
+
+                if(data.holdingPrices.quotes == undefined){
+                    setHoldingValues({})
+                } else {
+
+                    setHoldingValues(data.holdingPrices.quotes)
+                }
 
 
 
-   
+
+                
 
 
 
@@ -88,6 +95,7 @@ const PortfolioPage = () => {
                     }
                 })
 
+                console.log("DATA:",data)
 
                 setTotalValue(stockRevenue + data.portfolio.buying_power)
 
@@ -112,7 +120,8 @@ const PortfolioPage = () => {
 
     }, [])
 
-
+        console.log("HUH",portData)
+        console.log("ASD", totalValue)
 
   
         if(portData && totalValue && holdingValues){
