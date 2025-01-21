@@ -1,4 +1,4 @@
-import { DollarSign, TrendingUp, TrendingDown, Briefcase, Activity, PieChart, Clock, Filter, Download, Wallet, Bell } from 'lucide-react';
+import { DollarSign, Briefcase,} from 'lucide-react';
 
 
 const portfolioHead = ({buyingPower, totalValue} : {buyingPower: number, totalValue: number}) => {

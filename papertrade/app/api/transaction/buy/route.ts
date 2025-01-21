@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { Toilet } from "lucide-react";
+
 import { NextResponse } from "next/server";
 
 

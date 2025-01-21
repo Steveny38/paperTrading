@@ -41,8 +41,6 @@ const portfolioPage = () => {
 
     const [transactionHist, setTransactionHist] = useState<transactionHistInterface[] | null>(null)
 
-
-    const [stockList, setStockList] = useState<stockListInterface[]>([])
     const [currHolding, setCurr] = useState<transactionHistInterface[]|null>(null)
     const [holdingValues, setHoldingValues] = useState<any>(null)
 

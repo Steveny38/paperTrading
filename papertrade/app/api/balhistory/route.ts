@@ -34,7 +34,7 @@ async function checkHistory(){
 
 }
 
-export async function GET(req: Request){
+export async function GET(){
     try {
         const data = await checkHistory()
 

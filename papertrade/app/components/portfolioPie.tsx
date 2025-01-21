@@ -12,25 +12,8 @@ interface TransactionHistInterface {
     id: string;
 }
 
-interface PortfolioPosition {
-    totalValue: number;
-    quantity: number;
-}
 
-interface PortfolioPositions {
-    [key: string]: PortfolioPosition;
-}
 
-interface ChartDataItem {
-    name: string;
-    value: number;
-    quantity: number;
-    isShort: boolean;
-}
-
-interface PortPieProps {
-    currentHoldings: TransactionHistInterface[];
-}
 
 const PortPie = (props: { currentHoldings: TransactionHistInterface[] |null }) => {
     const { currentHoldings } = props;

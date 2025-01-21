@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { Convergence } from "next/font/google";
+
 import { NextResponse } from "next/server";
 
 async function checkCover(stock_symbol: string, quantity: number, total: number, price: number){

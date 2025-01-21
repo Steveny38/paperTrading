@@ -7,10 +7,9 @@ import LoadingSpinner from "./loader";
 
 
 const dashboard = () => {
-    const [stockList, setStockList] = useState<string[]>(["AAPL", "NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "TSM", "AVGO", "BRK.A", "LLY", "WMT", "JPM", "V", "XOM", "UNH", "MA", "ORCL", "COST", "HD", "PG", "CVX", "MCD", "PFE", "KO", "PEP", "INTC", "CSCO", "ABBV", "NKE", "DIS", "MRK", "CRM", "ADBE", "CMCSA", "T", "BA", "IBM", "TMO", "MDT", "HON", "QCOM", "ACN", "MS", "UPS", "UNP", "LOW", "GS", "AXP", "BMY"]
-    );
+    const stockList: string[] = ["AAPL", "NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "TSM", "AVGO", "BRK.A", "LLY", "WMT", "JPM", "V", "XOM", "UNH", "MA", "ORCL", "COST", "HD", "PG", "CVX", "MCD", "PFE", "KO", "PEP", "INTC", "CSCO", "ABBV", "NKE", "DIS", "MRK", "CRM", "ADBE", "CMCSA", "T", "BA", "IBM", "TMO", "MDT", "HON", "QCOM", "ACN", "MS", "UPS", "UNP", "LOW", "GS", "AXP", "BMY"]
     
-    const [count, setCount] = useState<number>(0);
+    
     const [stockQuotes, setQuotes] = useState<any>(null)
     const [stockBars, setBars] = useState<any>(null)
 
@@ -28,7 +27,7 @@ const dashboard = () => {
             body: JSON.stringify(stockList),
         });
 
-        let data = await res.json();
+        const data = await res.json();
         
         setQuotes(data[0].quotes)
         setBars(data[1].bars)
@@ -54,7 +53,6 @@ const dashboard = () => {
      
         const intervalId = setInterval(() => {
             fetchStockData()
-            setCount((prevCount) => prevCount + 1); 
         }, 30000);
 
        

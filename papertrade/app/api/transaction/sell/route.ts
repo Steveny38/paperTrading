@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
 
 async function checkSell(stock_symbol: string, quantity: number, total: number, price: number){

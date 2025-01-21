@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useStockContext } from "../context/SelectedStockContext";
-import { LineChart, ResponsiveContainer, Line, CartesianGrid, XAxis, YAxis, AreaChart, Tooltip } from "recharts";
+import { LineChart, ResponsiveContainer, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import StockAction from "./stockAction";
 
@@ -68,10 +68,6 @@ const stockHistory = () => {
             setMax(high)
 
             setHistory(res.bars)
-
-           
-
-            console.log(history)
         }
         getStockHistory()
     }, [stock, stockRange])

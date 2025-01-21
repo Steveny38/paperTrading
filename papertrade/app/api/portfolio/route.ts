@@ -94,7 +94,7 @@ export async function GET(){
 
         
     } catch (error) {
-        return NextResponse.json({success: false, message: `Error in GET getPortfolioHead`})
+        return NextResponse.json({success: false, message: `Error in GET getPortfolioHead ${error}`})
     }
 
 }

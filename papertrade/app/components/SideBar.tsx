@@ -13,7 +13,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 const SideBar = () => {
 
-    const [currentPage, setCurrentPage] = useState('dashboard');
 
     const pathname = usePathname()
     console.log("current path:", pathname)

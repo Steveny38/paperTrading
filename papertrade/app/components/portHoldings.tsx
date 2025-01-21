@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { SelectedStockProvider, useStockContext } from "../context/SelectedStockContext";
 
 
 interface transactionHistInterface {
@@ -29,16 +28,11 @@ const PortHoldings = (props:{currentHoldings: transactionHistInterface[]|null, h
     
     const {currentHoldings, holdingPrices} = props
 
-      const {updateStock} = useStockContext()
 
     let holdingsMap: holdingsMapInterface = { "buy": {}, "short": {}, "sell": {}, "cover" : {} }
 
     const router = useRouter()
-    const tradeStock = (stock_symbol: string) => {
-        updateStock(stock_symbol)
-        console.log("redirect")
-        router.push("/dashboard")
-    }
+
     
     currentHoldings?.forEach(hold => {
         if(holdingsMap[hold.action][hold.stock_symbol] != undefined ){
