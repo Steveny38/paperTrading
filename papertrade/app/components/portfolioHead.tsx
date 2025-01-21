@@ -1,7 +1,7 @@
 import { DollarSign, Briefcase,} from 'lucide-react';
 
 
-const portfolioHead = ({buyingPower, totalValue} : {buyingPower: number, totalValue: number}) => {
+const PortfolioHead = ({buyingPower, totalValue} : {buyingPower: number, totalValue: number}) => {
 
 
     return ( 
@@ -37,4 +37,4 @@ const portfolioHead = ({buyingPower, totalValue} : {buyingPower: number, totalVa
      );
 }
  
-export default portfolioHead;
+export default PortfolioHead;

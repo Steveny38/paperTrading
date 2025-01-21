@@ -18,7 +18,7 @@ interface TransactionHistInterface {
 const PortPie = (props: { currentHoldings: TransactionHistInterface[] |null }) => {
     const { currentHoldings } = props;
 
-    let holdingMap: { [key: string]: TransactionHistInterface } = {};
+    const holdingMap: { [key: string]: TransactionHistInterface } = {};
 
     currentHoldings?.forEach((hold) => {
         if (!holdingMap[hold.stock_symbol]) {
@@ -31,13 +31,12 @@ const PortPie = (props: { currentHoldings: TransactionHistInterface[] |null }) =
         }
     });
 
-    let holdingList: TransactionHistInterface[] = [];
+    const holdingList: TransactionHistInterface[] = [];
 
     Object.keys(holdingMap).forEach((hold) => {
         holdingList.push(holdingMap[hold]);
     });
 
-    console.log("HOLDING LIST", holdingList);
 
     const COLORS = [
         '#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8',

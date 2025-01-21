@@ -6,13 +6,14 @@ const APCA_API_SECRET_KEY = process.env.APCA_API_SECRET_KEY
 
 async function getStockHistory(symbol: string, timeframe: string){
 
-    let time, start, formatedStart, formatedEnd
+    let time, start, formatedStart
+  
 
    
 
     const current = new Date()
     
-    formatedEnd = current.toISOString().replace(/\.\d{3}Z$/, 'Z').replace(/:/g, '%3A')
+    const formatedEnd = current.toISOString().replace(/\.\d{3}Z$/, 'Z').replace(/:/g, '%3A')
 
     switch (timeframe) {
         case "minute":
@@ -98,7 +99,7 @@ async function getStockHistory(symbol: string, timeframe: string){
 }
 
 
-export async function POST(request: Request, context: {params: {symbol : string}}){
+export async function POST(request: Request, context: {params: PromiseLike<{ symbol: string; }>}){
     const {symbol} = await context.params
 
     const timeframe = await request.json()

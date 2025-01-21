@@ -8,14 +8,12 @@ import {
     LogOutIcon
 
   } from 'lucide-react';
-import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const SideBar = () => {
 
 
     const pathname = usePathname()
-    console.log("current path:", pathname)
     const router = useRouter()
 
     const navigation = [

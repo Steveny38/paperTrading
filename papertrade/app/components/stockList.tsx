@@ -5,13 +5,44 @@ import StockRow from "./stockRow";
 import { useStockContext } from "../context/SelectedStockContext";
 import LoadingSpinner from "./loader";
 
+interface Quote {
+  ap: number;
+  as: number;
+  ax: string;
+  bp: number;
+  bs: number;
+  bx: string;
+  c: string[];
+  t: string;
+  z: string;
+}
+
+interface Quotes {
+  [symbol: string]: Quote;
+}
+
+interface StockBar {
+  c: number;   // Close price
+  h: number;   // High price
+  l: number;   // Low price
+  n: number;   // Number of trades
+  o: number;   // Open price
+  t: string;   // Timestamp
+  v: number;   // Volume
+  vw: number;  // Weighted average price
+}
+
+interface Bars {
+  [symbol: string]: StockBar;
+}
+
 
 const dashboard = () => {
-    const stockList: string[] = ["AAPL", "NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "TSM", "AVGO", "BRK.A", "LLY", "WMT", "JPM", "V", "XOM", "UNH", "MA", "ORCL", "COST", "HD", "PG", "CVX", "MCD", "PFE", "KO", "PEP", "INTC", "CSCO", "ABBV", "NKE", "DIS", "MRK", "CRM", "ADBE", "CMCSA", "T", "BA", "IBM", "TMO", "MDT", "HON", "QCOM", "ACN", "MS", "UPS", "UNP", "LOW", "GS", "AXP", "BMY"]
+    const stockList = ["AAPL", "NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "TSM", "AVGO", "BRK.A", "LLY", "WMT", "JPM", "V", "XOM", "UNH", "MA", "ORCL", "COST", "HD", "PG", "CVX", "MCD", "PFE", "KO", "PEP", "INTC", "CSCO", "ABBV", "NKE", "DIS", "MRK", "CRM", "ADBE", "CMCSA", "T", "BA", "IBM", "TMO", "MDT", "HON", "QCOM", "ACN", "MS", "UPS", "UNP", "LOW", "GS", "AXP", "BMY"]
     
     
-    const [stockQuotes, setQuotes] = useState<any>(null)
-    const [stockBars, setBars] = useState<any>(null)
+    const [stockQuotes, setQuotes] = useState<Quotes| null>(null)
+    const [stockBars, setBars] = useState<Bars | null>(null)
 
     const {stock, updateChange, updatePrice, updateStats} = useStockContext()
 
@@ -27,13 +58,13 @@ const dashboard = () => {
             body: JSON.stringify(stockList),
         });
 
-        const data = await res.json();
+        let data = await res.json();
         
         setQuotes(data[0].quotes)
         setBars(data[1].bars)
 
 
-        if(stock){
+        if(stock && stockBars && stockQuotes){
           const change = (((stockQuotes[stock].bp - stockBars[stock].o)/stockBars[stock].c)*100).toFixed(2)
 
           updateChange(change)
@@ -42,7 +73,6 @@ const dashboard = () => {
           
         }
 
-        console.log(data[1].bars)
     };
 
 
@@ -60,7 +90,7 @@ const dashboard = () => {
     },[stock]); 
 
    
-    if(stockQuotes){
+    if(stockQuotes && stockBars){
 
         return(
             <div className=" pl-10 bg-gray">

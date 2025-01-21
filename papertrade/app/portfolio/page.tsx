@@ -30,19 +30,30 @@ interface portDataInterface{
     buying_power: number
 }
 
-interface stockListInterface {
-    stock_symbol: string,
-    quantity: number,
-    action: string
+interface Quote {
+    ap: number;
+    as: number;
+    ax: string;
+    bp: number;
+    bs: number;
+    bx: string;
+    c: string[];
+    t: string;
+    z: string;
+  }
+  
+  interface Quotes {
+    [symbol: string]: Quote;
+  }
 
-}
 
-const portfolioPage = () => {
+
+const PortfolioPage = () => {
 
     const [transactionHist, setTransactionHist] = useState<transactionHistInterface[] | null>(null)
 
     const [currHolding, setCurr] = useState<transactionHistInterface[]|null>(null)
-    const [holdingValues, setHoldingValues] = useState<any>(null)
+    const [holdingValues, setHoldingValues] = useState<Quotes|null>(null)
 
     const [totalValue, setTotalValue] = useState<number|null>(null)
 
@@ -60,7 +71,9 @@ const portfolioPage = () => {
                 setCurr(data.currentHoldings)
                 setHoldingValues(data.holdingPrices.quotes)
 
-                console.log("TRANSACITROSN", data)
+
+
+   
 
 
 
@@ -75,7 +88,6 @@ const portfolioPage = () => {
                     }
                 })
 
-                console.log("MONEY",stockRevenue + data.portfolio.buying_power)
 
                 setTotalValue(stockRevenue + data.portfolio.buying_power)
 
@@ -89,7 +101,6 @@ const portfolioPage = () => {
 
         const intervalId = setInterval(() => {
             getData()
-            console.log("RELOADED")
         }, 30000);
 
        
@@ -104,7 +115,7 @@ const portfolioPage = () => {
 
 
   
-        if(portData && totalValue){
+        if(portData && totalValue && holdingValues){
 
             return ( <div className="w-[100%] p-4 flex flex-col  h-screen " >
           
@@ -156,4 +167,4 @@ const portfolioPage = () => {
    
 
  
-export default portfolioPage;
+export default PortfolioPage;

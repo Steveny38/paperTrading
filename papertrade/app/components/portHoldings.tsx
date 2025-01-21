@@ -1,7 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
 
 interface transactionHistInterface {
 
@@ -18,20 +16,36 @@ interface transactionHistInterface {
 
 }
 
+interface Quote {
+  ap: number;
+  as: number;
+  ax: string;
+  bp: number;
+  bs: number;
+  bx: string;
+  c: string[];
+  t: string;
+  z: string;
+}
+
+interface Quotes {
+  [symbol: string]: Quote;
+}
+
 interface holdingsMapInterface {
   [key: string]: { [stockName: string]: transactionHistInterface };
 }
 
 
 
-const PortHoldings = (props:{currentHoldings: transactionHistInterface[]|null, holdingPrices: any} ) => {
+const PortHoldings = (props:{currentHoldings: transactionHistInterface[]|null, holdingPrices: Quotes } ) => {
     
     const {currentHoldings, holdingPrices} = props
 
 
-    let holdingsMap: holdingsMapInterface = { "buy": {}, "short": {}, "sell": {}, "cover" : {} }
+    const holdingsMap: holdingsMapInterface = { "buy": {}, "short": {}, "sell": {}, "cover" : {} }
 
-    const router = useRouter()
+    
 
     
     currentHoldings?.forEach(hold => {
@@ -43,7 +57,6 @@ const PortHoldings = (props:{currentHoldings: transactionHistInterface[]|null, h
         }
     })
 
-    console.log(holdingsMap)
 
     // action: "short"
     // balanced_quantity: 5
@@ -105,7 +118,6 @@ const PortHoldings = (props:{currentHoldings: transactionHistInterface[]|null, h
                 {
                   Object.keys(holdingsMap["short"]).map(holding => {
 
-                    console.log()
 
                     return(
                     <tr key={holdingsMap["short"][holding].id} className="hover:bg-gray-50">
