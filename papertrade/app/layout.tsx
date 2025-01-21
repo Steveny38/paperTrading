@@ -32,9 +32,6 @@ export default async function RootLayout({children,}: Readonly<{children: React.
     return (
 
       <html lang="en">
-        <head>
-          
-        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased `}
           >
@@ -54,9 +51,6 @@ export default async function RootLayout({children,}: Readonly<{children: React.
     return (
 
       <html lang="en">
-        <head>
-          
-        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased `}
           >
