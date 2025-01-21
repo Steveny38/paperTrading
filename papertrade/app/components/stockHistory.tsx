@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useStockContext } from "../context/SelectedStockContext";
-import { LineChart, ResponsiveContainer, Line, CartesianGrid, XAxis, YAxis, AreaChart, Tooltip } from "recharts";
+import { LineChart, ResponsiveContainer, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import StockAction from "./stockAction";
 
@@ -17,7 +17,7 @@ interface bar {
     "vw": number
 }
 
-const stockHistory = () => {
+const StockHistory = () => {
 
     const {stock, price, change,stockHigh, stockLow, stockClose, stockOpen, stockRange, updateRange} = useStockContext()
     const [history, setHistory] = useState<bar[] | null>(null)
@@ -162,4 +162,4 @@ const stockHistory = () => {
 
 }
  
-export default stockHistory;
+export default StockHistory;
